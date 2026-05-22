@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* === Brand Colors === */
+  --color-primary: #875300;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d4860a;
+  --color-on-primary-container: #472900;
+  --color-primary-fixed: #ffddb9;
+  --color-primary-fixed-dim: #ffb963;
+  --color-inverse-primary: #ffb963;
+  --color-honey-drip: #EF9F27;
+  --color-night-accent: #FAC765;
+  --color-night-bg: #1A1008;
+  --color-day-bg: #FAF6EF;
+  --color-day-text: #1F1208;
+
+  /* === Surfaces === */
+  --color-surface: #fdf9f2;
+  --color-surface-dim: #dddad3;
+  --color-surface-bright: #fdf9f2;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f3ec;
+  --color-surface-container: #f1ede6;
+  --color-surface-container-high: #ebe8e1;
+  --color-surface-container-highest: #e6e2db;
+  --color-surface-variant: #e6e2db;
+  --color-surface-linen: #F2EAD9;
+  --color-surface-walnut: #2C1A08;
+
+  /* === On-Colors === */
+  --color-on-surface: #1c1c18;
+  --color-on-surface-variant: #534435;
+  --color-on-background: #1c1c18;
+  --color-inverse-surface: #31302c;
+  --color-inverse-on-surface: #f4f0e9;
+
+  /* === Secondary === */
+  --color-secondary: #7f5445;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fec5b2;
+  --color-on-secondary-container: #7a4f41;
+  --color-secondary-fixed: #ffdbd0;
+  --color-secondary-fixed-dim: #f2baa8;
+  --color-on-secondary-fixed: #311308;
+  --color-on-secondary-fixed-variant: #643d2f;
+
+  /* === Tertiary === */
+  --color-tertiary: #496636;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #81a16a;
+  --color-on-tertiary-container: #1c360b;
+  --color-tertiary-fixed: #caedaf;
+  --color-tertiary-fixed-dim: #afd195;
+  --color-on-tertiary-fixed: #0a2100;
+  --color-on-tertiary-fixed-variant: #324e20;
+
+  /* === Outline === */
+  --color-outline: #857463;
+  --color-outline-variant: #d8c3af;
+
+  /* === Error === */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* === Typography === */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  /* === Animations === */
+  --animate-hero-zoom: heroZoom 20s infinite alternate linear;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* === Reveal animation === */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Day/Night transition === */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 0.7s ease, color 0.7s ease, border-color 0.7s ease;
+}
+
+/* === Material Symbols === */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-day-bg);
+  color: var(--color-on-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Hide scrollbar === */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === Selection === */
+::selection {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
 }
