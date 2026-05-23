@@ -21,15 +21,15 @@ export function Hero() {
     <header ref={ref} id="home" className="relative w-full overflow-hidden flex items-center justify-center text-center px-6" style={{ minHeight: "100vh" }}>
       {/* Background video */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
+        {/* Mobile: entry-view */}
+        <video autoPlay loop muted playsInline className="md:hidden w-full h-full object-cover">
+          <source src="/images/entry-view.webm" type="video/webm" />
+          <source src="/images/entry-view.mp4"  type="video/mp4" />
+        </video>
+        {/* Desktop: dronview */}
+        <video autoPlay loop muted playsInline className="hidden md:block w-full h-full object-cover">
           <source src="/images/dronview.webm" type="video/webm" />
-          <source src="/images/dronview.mp4"   type="video/mp4" />
+          <source src="/images/dronview.mp4"  type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/40" />
       </div>
