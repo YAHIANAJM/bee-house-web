@@ -1,15 +1,18 @@
 export function Hero() {
   return (
-    <header className="relative h-screen w-full overflow-hidden flex items-center justify-center text-center px-6">
-      {/* Background image with zoom */}
+    <header id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center text-center px-6">
+      {/* Background video */}
       <div className="absolute inset-0 z-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/hero-bg.jpg"
-          alt="Bee House Casablanca — Ain Chock"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover brightness-[0.65]"
-          style={{ animation: "heroZoom 20s infinite alternate linear" }}
-        />
+        >
+          <source src="/images/entry-view.webm" type="video/webm" />
+          <source src="/images/entry-view.mp4"  type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-day-bg dark:to-night-bg transition-colors duration-1000" />
       </div>
 
