@@ -11,7 +11,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label="Toggle day/night theme"
       className={[
-        "fixed bottom-8 right-8 z-[60] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center",
+        "hidden md:flex fixed bottom-8 right-8 z-[60] w-14 h-14 rounded-full shadow-2xl items-center justify-center",
         "hover:scale-110 active:scale-95 transition-all duration-200",
         isDark
           ? "bg-night-accent text-night-bg"

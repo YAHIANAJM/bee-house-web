@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const SECTION_PATHS: { id: string; path: string }[] = [
-  { id: "home",      path: "/home"       },
+  { id: "home",      path: "/"           },
   { id: "morning",   path: "/cafe"       },
   { id: "afternoon", path: "/restaurant" },
   { id: "evening",   path: "/glacier"    },

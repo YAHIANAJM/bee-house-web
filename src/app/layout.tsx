@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -47,11 +48,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body className="min-h-screen">
+      <body className="min-h-screen pb-16 md:pb-0">
         <ThemeProvider>
           <div className="theme-transition">
             {children}
             <ThemeToggle />
+            <MobileBottomNav />
           </div>
         </ThemeProvider>
       </body>

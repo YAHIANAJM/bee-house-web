@@ -107,7 +107,9 @@ export function MenuPageClient() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [appliedVoucher, setAppliedVoucher] = useState<typeof VOUCHERS[number] | null>(null);
   const [orderStatus, setOrderStatus] = useState<"idle" | "printing" | "success">("idle");
-  const [tableNumber] = useState(() => Math.floor(Math.random() * 24) + 1);
+  const [tableNumber, setTableNumber] = useState(1);
+  const [ticketNumber, setTicketNumber] = useState(1000);
+  const [orderDate, setOrderDate] = useState("");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -181,11 +183,17 @@ export function MenuPageClient() {
   };
 
   const triggerOrderPrinting = () => {
+    setTicketNumber(Math.floor(Math.random() * 9000) + 1000);
+    setOrderDate(new Date().toLocaleString("fr-FR"));
     setOrderStatus("printing");
     setTimeout(() => {
       setOrderStatus("success");
     }, 2800);
   };
+
+  useEffect(() => {
+    setTableNumber(Math.floor(Math.random() * 24) + 1);
+  }, []);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -977,8 +985,8 @@ export function MenuPageClient() {
                 <span className="text-[10px] block opacity-75">Casablanca Ain Chock</span>
                 <span className="text-[9px] block opacity-60">692 Bd El Qods</span>
                 <span className="text-[10px] block font-bold mt-2">BON DE PREPARATION</span>
-                <span className="text-[9px] block">Table: {tableNumber} | Ticket #{Math.floor(Math.random() * 9000) + 1000}</span>
-                <span className="text-[9px] block opacity-75">{new Date().toLocaleString("fr-FR")}</span>
+                <span className="text-[9px] block">Table: {tableNumber} | Ticket #{ticketNumber}</span>
+                <span className="text-[9px] block opacity-75">{orderDate}</span>
                 <div className="border-b border-dashed border-gray-400 my-2" />
               </div>
 

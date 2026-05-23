@@ -1,6 +1,24 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const setHeight = () => {
+      // Compensate for any CSS zoom on <html> (e.g. leftover cached zoom: 0.75)
+      const zoom = parseFloat(window.getComputedStyle(document.documentElement).zoom) || 1;
+      const h = Math.round(window.innerHeight / zoom);
+      if (ref.current) ref.current.style.height = h + "px";
+    };
+    setHeight();
+    window.addEventListener("resize", setHeight);
+    return () => window.removeEventListener("resize", setHeight);
+  }, []);
+
   return (
-    <header id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center text-center px-6">
+    <header ref={ref} id="home" className="relative w-full overflow-hidden flex items-center justify-center text-center px-6" style={{ minHeight: "100vh" }}>
       {/* Background video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -13,7 +31,7 @@ export function Hero() {
           <source src="/images/entry-view.webm" type="video/webm" />
           <source src="/images/entry-view.mp4"  type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-day-bg dark:to-night-bg transition-colors duration-1000" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
       </div>
 
       {/* Hero Content */}
